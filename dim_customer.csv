@@ -1,0 +1,6 @@
+customer_key,customer_name,gender,city,state,country,customer_type
+1,Suma,Female,Bangalore,KA,India,Retail
+2,Bala,Male,Delhi,DL,India,Wholesale
+3,Keerthi,Female,Hyderabad,TS,India,Retail
+4,Kavya,Female,Vijayawada,AP,India,Retail
+5,Ravi,Male,Mumbai,MH,India,Wholesale
