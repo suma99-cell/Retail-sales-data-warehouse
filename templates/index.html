@@ -1,0 +1,157 @@
+<!DOCTYPE html><!DOCTYPE html<head>
+    <title>Retail Data Warehouse Dashboard</title>
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Arial;
+            display: flex;
+            background: #1e293b;
+            color: white;
+        }
+
+        
+        .sidebar {
+            width: 220px;
+            height: 100vh;
+            background: #020617;
+            padding: 20px;
+        }
+
+        .sidebar h2 {
+            color: #38bdf8;
+            text-align: center;
+        }
+
+        .sidebar button {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            background: #1e293b;
+            color: white;
+            border: none;
+            cursor: pointer;
+            text-align: left;
+            border-radius: 5px;
+        }
+
+        .sidebar button:hover {
+            background: #2563eb;
+        }
+
+        
+        .content {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+       
+        .card {
+            background: #020617;
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 22px;
+            margin-bottom: 20px;
+            box-shadow: 0px 0px 10px black;
+        }
+
+        
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+            background: white;
+            color: black;
+            font-size: 15px;
+        }
+
+        th {
+            background: #2563eb;
+            color: white;
+            padding: 10px;
+        }
+
+        td {
+            padding: 8px;
+            border-bottom: 1px solid gray;
+        }
+
+        h2 {
+            color: #38bdf8;
+        }
+
+        canvas {
+            background: white;
+            border-radius: 8px;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+
+<div class="sidebar">
+    <h2>Dashboard</h2>
+
+    <button onclick="showSection('analytics')">📊 Analytics</button>
+    <button onclick="showReports()">📋 Reports</button>
+    <button onclick="showSection('warehouse')">🗄️ Warehouse</button>
+</div>
+
+
+<div class="content">
+
+   
+    <div id="analytics">
+        <div class="card" id="totalSales">Total Revenue: Loading...</div>
+        <canvas id="chart"></canvas>
+    </div>
+
+ 
+    <div id="reports" class="hidden">
+        <h2>Reports (Joined Data)</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Customer</th>
+                    <th>Product</th>
+                    <th>Date</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody id="reportTable"></tbody>
+        </table>
+    </div>
+
+    
+    <div id="warehouse" class="hidden">
+        <h2>Warehouse Tables</h2>
+
+        <button onclick="loadDimCustomer()">Customer</button>
+        <button onclick="loadDimProduct()">Product</button>
+        <button onclick="loadDimDate()">Date</button>
+        <button onclick="loadFactSales()">Sales</button>
+
+        <table>
+            <thead id="tableHead"></thead>
+            <tbody id="tableBody"></tbody>
+        </table>
+    </div>
+
+</div>
+
+
+<script src="/static/script.js"></script>
+
+</body>
+</html>
+<html>
