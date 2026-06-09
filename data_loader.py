@@ -2,7 +2,6 @@ from models import Customer, Product, Date, Sales
 from db_connection import DBConnection
 
 
-# ✅ Load Customers
 def load_customers(db):
     rows = db.execute_query("SELECT * FROM dim_customer")
     customers = {}
@@ -11,7 +10,7 @@ def load_customers(db):
     return customers
 
 
-# ✅ Load Products
+
 def load_products(db):
     rows = db.execute_query("SELECT * FROM dim_product")
     products = {}
@@ -20,7 +19,7 @@ def load_products(db):
     return products
 
 
-# ✅ Load Dates
+
 def load_dates(db):
     rows = db.execute_query("SELECT * FROM dim_date")
     dates = {}
@@ -29,7 +28,7 @@ def load_dates(db):
     return dates
 
 
-# ✅ Load Sales
+
 def load_sales(db, customers, products, dates):
     rows = db.execute_query("SELECT * FROM fact_sales")
     sales_list = []
@@ -49,7 +48,7 @@ def load_sales(db, customers, products, dates):
     return sales_list
 
 
-# ✅ ✅ ✅ NEW FUNCTION (IMPORTANT FOR API)
+
 def load_data():
     db = DBConnection()
 
