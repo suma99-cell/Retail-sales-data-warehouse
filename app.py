@@ -1,4 +1,3 @@
-print("✅ APP.PY IS RUNNING")
 from flask import Flask, jsonify, render_template, request
 from data_loader import load_data
 from db_connection import DBConnection
@@ -6,13 +5,13 @@ from db_connection import DBConnection
 app = Flask(__name__)
 
 
-# ✅ ================= UI =================
+
 @app.route('/')
 def home():
     return render_template('index.html')
 
 
-# ✅ ================= ANALYTICS =================
+
 @app.route('/total_sales')
 def total_sales():
     dw = load_data()
@@ -32,7 +31,7 @@ def sales_by_customer():
     return jsonify(result)
 
 
-# ✅ ================= REPORTS =================
+
 @app.route('/sales_details')
 def sales_details():
     dw = load_data()
@@ -49,7 +48,6 @@ def sales_details():
     return jsonify(data)
 
 
-# ✅ ================= WAREHOUSE =================
 
 @app.route('/dim_customer')
 def dim_customer():
@@ -104,12 +102,11 @@ def fact_sales():
     } for s in dw["sales"]])
 
 
-# ✅ ================= ✅ CRUD OPERATIONS =================
 
-# ✅ CREATE
+
 @app.route('/add_sale', methods=['POST'])
 def add_sale():
-    print("🔥 API HIT: ADD SALE")   # ✅ add here
+    print("🔥 API HIT: ADD SALE")   
     db = DBConnection()
     data = request.get_json(silent=True) or request.form.to_dict()
 
@@ -136,10 +133,10 @@ def add_sale():
     db.execute_update(query, values)
     db.close()
 
-    return jsonify({"message": "✅ Sale Added"})
+    return jsonify({"message": "Sale Added"})
 
 
-# ✅ READ ONE
+
 @app.route('/get_sale/<int:sale_id>')
 def get_sale(sale_id):
     db = DBConnection()
@@ -166,7 +163,7 @@ def get_sale(sale_id):
     })
 
 
-# ✅ UPDATE FULL
+
 @app.route('/update_sale/<int:sale_id>', methods=['PUT'])
 def update_sale(sale_id):
     db = DBConnection()
@@ -197,10 +194,10 @@ def update_sale(sale_id):
     db.execute_update(query, values)
     db.close()
 
-    return jsonify({"message": "✅ Sale Updated"})
+    return jsonify({"message": "Sale Updated"})
 
 
-# ✅ UPDATE ONLY QUANTITY
+
 @app.route('/update_quantity/<int:sale_id>', methods=['PUT'])
 def update_quantity(sale_id):
     db = DBConnection()
@@ -216,10 +213,9 @@ def update_quantity(sale_id):
 
     db.close()
 
-    return jsonify({"message": "✅ Quantity Updated"})
+    return jsonify({"message": "Quantity Updated"})
 
 
-# ✅ DELETE
 @app.route('/delete_sale/<int:sale_id>', methods=['DELETE'])
 def delete_sale(sale_id):
     db = DBConnection()
@@ -231,9 +227,9 @@ def delete_sale(sale_id):
 
     db.close()
 
-    return jsonify({"message": "✅ Sale Deleted"})
+    return jsonify({"message": "Sale Deleted"})
 
 
-# ✅ ================= RUN =================
+
 if __name__ == "__main__":
     app.run(debug=True)

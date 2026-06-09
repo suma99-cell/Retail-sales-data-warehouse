@@ -2,7 +2,7 @@ import pandas as pd
 import psycopg2
 
 
-# ✅ DB CONNECTION
+
 def get_connection():
     return psycopg2.connect(
         host="localhost",
@@ -13,26 +13,25 @@ def get_connection():
     )
 
 
-# ✅ GENERIC PROCESS FUNCTION (MAIN LOGIC ⭐)
 def process_file(file_path, table_name, load_function):
 
-    # ✅ EXTRACT
+
     df = pd.read_csv(file_path)
-    print(f"✅ {file_path} extracted successfully")
+    print(f"{file_path} extracted successfully")
 
-    # ✅ VALIDATE
-    print("✅ DataFrame validation successful")
 
-    # ✅ TRANSFORM
+    print("DataFrame validation successful")
+
+
     df = df.drop_duplicates()
-    print("✅ DataFrame transformed successfully")
+    print("DataFrame transformed successfully")
 
-    # ✅ LOAD
+
     load_function(df)
-    print(f"✅ {table_name} loaded successfully\n")   # ✅ SPACE ADDED
+    print(f"{table_name} loaded successfully\n")  
 
 
-# ✅ LOAD CUSTOMER
+
 def load_customers(df):
     conn = get_connection()
     cursor = conn.cursor()
@@ -58,7 +57,7 @@ def load_customers(df):
     conn.close()
 
 
-# ✅ LOAD PRODUCT
+
 def load_products(df):
     conn = get_connection()
     cursor = conn.cursor()
@@ -82,7 +81,7 @@ def load_products(df):
     conn.close()
 
 
-# ✅ LOAD DATE
+
 def load_dates(df):
     conn = get_connection()
     cursor = conn.cursor()
@@ -107,7 +106,6 @@ def load_dates(df):
     conn.close()
 
 
-# ✅ LOAD FACT SALES
 def load_fact(df):
     conn = get_connection()
     cursor = conn.cursor()
@@ -133,24 +131,22 @@ def load_fact(df):
     conn.close()
 
 
-# ✅ MAIN FUNCTION
+
 def main():
 
-    # ✅ CUSTOMER FLOW
+
     process_file("data/dim_customer.csv", "customers", load_customers)
 
-    # ✅ PRODUCT FLOW
     process_file("data/dim_product.csv", "products", load_products)
 
-    # ✅ DATE FLOW
+
     process_file("data/dim_date.csv", "dates", load_dates)
 
-    # ✅ FACT FLOW
+
     process_file("data/fact_sales.csv", "fact_sales", load_fact)
 
-    print("✅ ETL process completed successfully ✅")
+    print("ETL process completed successfully")
 
 
-# ✅ RUN
 if __name__ == "__main__":
     main()

@@ -11,13 +11,12 @@ class DBConnection:
             port="5432"      
         )
  
-    # ✅ READ (SELECT)
     def execute_query(self, query, params=None):
         cursor = self.conn.cursor()
  
         try:
             if params:
-                cursor.execute(query, params)   # ✅ parameterized query
+                cursor.execute(query, params)   
             else:
                 cursor.execute(query)
  
@@ -32,7 +31,6 @@ class DBConnection:
             cursor.close()
  
  
-    # ✅ CREATE / UPDATE / DELETE
     def execute_update(self, query, params=None):
         cursor = self.conn.cursor()
  
@@ -52,7 +50,7 @@ class DBConnection:
             cursor.close()
  
  
-    # ✅ CLOSE CONNECTION
+
     def close(self):
         if self.conn:
             self.conn.close()

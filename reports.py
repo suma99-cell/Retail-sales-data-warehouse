@@ -21,6 +21,5 @@ class ReportGenerator:
 
 
     def sales_by_customer(self):
-        # Example logic
         return {"customer1": 1000, "customer2": 2000}
   

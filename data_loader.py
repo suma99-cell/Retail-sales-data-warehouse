@@ -2,6 +2,7 @@ from models import Customer, Product, Date, Sales
 from db_connection import DBConnection
 
 
+
 def load_customers(db):
     rows = db.execute_query("SELECT * FROM dim_customer")
     customers = {}
