@@ -1,11 +1,10 @@
 const baseURL = "http://127.0.0.1:5000";
 
-// ✅ Load Analytics on page load
+
 window.onload = function () {
     loadAnalytics();
 };
 
-// ✅ ================= SECTION SWITCH =================
 function showSection(section) {
     document.getElementById("analytics").classList.add("hidden");
     document.getElementById("reports").classList.add("hidden");
@@ -15,10 +14,8 @@ function showSection(section) {
 }
 
 
-// ✅ ================= ANALYTICS =================
 function loadAnalytics() {
 
-    // ✅ Total Sales
     fetch(`${baseURL}/total_sales`)
         .then(res => res.json())
         .then(data => {
@@ -26,7 +23,6 @@ function loadAnalytics() {
                 "Total Revenue: ₹ " + data.total_sales;
         });
 
-    // ✅ Chart
     fetch(`${baseURL}/sales_by_customer`)
         .then(res => res.json())
         .then(data => {
@@ -49,7 +45,6 @@ function loadAnalytics() {
 }
 
 
-// ✅ ================= REPORTS =================
 function showReports() {
     showSection('reports');
 
@@ -73,8 +68,6 @@ function showReports() {
         });
 }
 
-
-// ✅ ================= COMMON TABLE =================
 function renderTable(headers, data) {
     let head = document.getElementById("tableHead");
     let body = document.getElementById("tableBody");
@@ -82,17 +75,17 @@ function renderTable(headers, data) {
     head.innerHTML = "";
     body.innerHTML = "";
 
-    // ✅ headers
+    
     let hRow = "<tr>";
     headers.forEach(h => hRow += `<th>${h}</th>`);
     hRow += "</tr>";
     head.innerHTML = hRow;
 
-    // ✅ rows
+    
     data.forEach(row => {
         let tr = "<tr>";
         headers.forEach(h => {
-            tr += `<td>${row[h] ?? ""}</td>`; // ✅ prevents undefined
+            tr += `<td>${row[h] ?? ""}</td>`; 
         });
         tr += "</tr>";
         body.innerHTML += tr;
@@ -100,9 +93,6 @@ function renderTable(headers, data) {
 }
 
 
-// ✅ ================= WAREHOUSE =================
-
-/* ✅ DIM CUSTOMER (FULL ER) */
 function loadDimCustomer() {
     showSection('warehouse');
 
@@ -117,7 +107,6 @@ function loadDimCustomer() {
 }
 
 
-/* ✅ DIM PRODUCT (FULL ER) */
 function loadDimProduct() {
     showSection('warehouse');
 
@@ -132,7 +121,6 @@ function loadDimProduct() {
 }
 
 
-/* ✅ DIM DATE (FULL ER) */
 function loadDimDate() {
     showSection('warehouse');
 
@@ -147,7 +135,6 @@ function loadDimDate() {
 }
 
 
-/* ✅ FACT SALES (FULL ER ✅) */
 function loadFactSales() {
     showSection('warehouse');
 
